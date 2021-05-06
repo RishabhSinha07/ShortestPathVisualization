@@ -1,9 +1,8 @@
-
 .square {
-    margin-top: 90px;
+    margin-top: 15vh;
     position: absolute;
-    height: 20px;
-    width: 20px;
+    height: 2vmin;
+    width: 2vmin;
     left: var(--x);
     top: var(--y);
     margin-left: 10%;
@@ -37,4 +36,8 @@
 
 .icon{
   margin-top: 10px;
+}
+
+.width{
+  width: 50vw;
 }

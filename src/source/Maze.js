@@ -161,17 +161,31 @@ function Maze() {
     
     return (
             <div className = 'maze' onClick={_onMouseClick}>
-            <nav class="navbar navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <span class="navbar-text">
-                Euclidean shortest path visulization
+            Euclidean shortest path visulization 
             </span>
+            <div className='width'></div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
             <button type="button" className="btn btn-outline-success btn-sm" onClick={updateStartPos}>Change Start</button>
+            </li>
+            <li class="nav-item active">
             <button type="button" className="btn btn-outline-warning btn-sm" onClick={updateEndPos}>Change Stop</button>
-            <button type="button" className="btn btn-outline-dark" id='button' onClick={EuclideanShortestPath}>Find the shortest path</button>
+            </li>
+            <li class="nav-item active">
+            <button type="button" className="btn btn-outline-dark btn-sm" id='button' onClick={EuclideanShortestPath}>Find the shortest path</button>
+            </li>
+            </ul>
+            </div>
             </nav>
             <div className='grid'>
             {grids.map((grid) => (
-            <div className={grid.className} id={grid.id}  style={{backgroundColor: `${grid.backgroundColor}`, '--x' : `${22*(grid.height+1)}px`,'--y': `${22*(grid.width+1)}px`, 'animation':`${grid.animation}  5s linear`}}></div>
+            <div className={grid.className} id={grid.id}  style={{backgroundColor: `${grid.backgroundColor}`, '--x' : `${20*(grid.height+1)}px`,'--y': `${20*(grid.width+1)}px`, 'animation':`${grid.animation}  5s linear`}}></div>
             ))}
             </div>
             <div className='footer'>
@@ -189,4 +203,7 @@ function Maze() {
 
 
 export default Maze;
+
+
+
 
