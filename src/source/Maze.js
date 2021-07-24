@@ -4,6 +4,7 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import { red } from '@material-ui/core/colors';
+import { event } from 'jquery';
 
 const width = 30;
 const height = 60;
@@ -64,11 +65,26 @@ function Maze() {
     const [END_Y,setEND_Y] = useState(50)
     const [Walls,setWalls] = useState([])
     const [grids,setGrid] = useState(generateInitialGrid(START_X, START_Y, END_X, END_Y,Walls));
+
     
+    document.addEventListener('mousedown', () => {
+            let temp = []
+            document.onmousemove = (e) => {
+                if(updateWalls && !isNaN(parseInt(e.target.id.split('_')[0])) && !isNaN(parseInt(e.target.id.split('_')[1]))){
+                    console.log(Walls);
+                    temp.push({'x':parseInt(e.target.id.split('_')[0]),'y':parseInt(e.target.id.split('_')[1])});
+                    setGrid(generateInitialGrid(START_X, START_Y, END_X,END_Y,Walls.concat(temp)));
+                    setWalls(Walls.concat(temp));
+                    console.log(Walls);
+                };
+        };   
+    })
+    
+    document.addEventListener("mouseup",() => {
+        document.onmousemove = null;
+    })
     
     const _onMouseClick = (e) => {
-        // console.log(updateStart,updateEnd)
-        // console.log(e.target.id.split('_')[0],e.target.id.split('_')[1])
         if(updateStart){
             console.log(Walls.length)
             setSTART_X(parseInt(e.target.id.split('_')[0]));
@@ -84,13 +100,6 @@ function Maze() {
             setGrid(generateInitialGrid(START_X,START_Y,parseInt(e.target.id.split('_')[0]), parseInt(e.target.id.split('_')[1]),Walls));
             setUpdateEnd(false);
             
-        }
-        if(updateWalls){
-            console.log(Walls.length)
-            console.log("Updating Walls");
-            let temp = {'x':parseInt(e.target.id.split('_')[0]),'y':parseInt(e.target.id.split('_')[1])};
-            setGrid(generateInitialGrid(START_X, START_Y, END_X,END_Y,Walls.concat(temp)));
-            setWalls(Walls.concat(temp));
         }
     }
 
